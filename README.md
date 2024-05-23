@@ -1,4 +1,4 @@
-# use-pdfjs-in-vue3
+# How to Use Pdfjs-dist in Vue3
 
 This template should help get you started developing with Vue 3 in Vite.
 
