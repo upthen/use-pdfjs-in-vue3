@@ -5,7 +5,7 @@
         height: 60px;
         width: 100%;
         padding: 0 20px;
-        background-color: #4caf50;
+        background-color: hsla(160, 100%, 37%, 1);
         color: white;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         display: flex;
@@ -97,18 +97,22 @@ function handleLinkClick(path: string) {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   background-color: #f8f8f8;
   scrollbar-width: thin;
-  scrollbar-color: #4caf50 #f8f8f8;
+  scrollbar-color: hsla(160, 100%, 37%, 1) #fff;
 }
-/* For Webkit browsers */
+
 .route::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
+  height: 1px;
+}
+
+.route::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background: #535353;
 }
 .route::-webkit-scrollbar-track {
-  background: #f8f8f8;
-}
-.route::-webkit-scrollbar-thumb {
-  background-color: #4caf50;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  border: 2px solid #f8f8f8;
+  background: #ededed;
 }
 </style>
