@@ -1,7 +1,7 @@
 {
   "name": "use-pdfjs-in-vue3",
   "version": "0.0.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
@@ -10,8 +10,13 @@
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false"
   },
   "dependencies": {
+    "@upthen/prettier-config": "^1.0.0",
+    "@upthen/utils": "^1.0.1",
     "lodash-es": "^4.17.21",
     "pdfjs-dist": "^2.9.359",
+    "sass": "^1.77.2",
+    "sass-loader": "^14.2.1",
+    "vite-plugin-compression": "^0.5.1",
     "vue": "^3.3.4"
   },
   "devDependencies": {
@@ -24,5 +29,6 @@
     "typescript": "~5.1.6",
     "vite": "^4.4.6",
     "vue-tsc": "^1.8.6"
-  }
+  },
+  "prettier": "@upthen/prettier-config"
 }
