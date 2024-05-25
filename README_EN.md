@@ -1,22 +1,25 @@
+
 <center>
 
 # 🎉How to Use Pdfjs-dist in Vue3
 
-<img src="./use-pdfjs-in-vue3.gif" alt="use-pdfjs-in-vue3" />
+<img src="./use-pdfjs-in-vue3.gif" />
 
-中文文档 | [英文文档](./README_EN.md)
+English Documentation | [Chinese Documentation](./README.md)
+
 
 </center>
 
-## 摘要
 
-本教程展示了如何在 vue3 中使用 pdfjs-dist 展示 pdf 文件，共提供了 3 个示例，3 种实现方法：
+## Abstract
 
-- 直接使用 iframe 展示 pdf，调用浏览器原生能力加载 pdf 文件；
-- 基于 pdfjs-dist 进行渲染多页 pdf；
-- 基于 pdfjs-dist 按需懒加载渲染多页 pdf；
+This tutorial demonstrates how to use pdfjs-dist to display PDF files in Vue3, providing three examples with three implementation methods:
 
-## 使用 iframe 展示 pdf
+- Directly use iframe to display PDF, calling the browser's native ability to load PDF files;
+- Based on pdfjs-dist to render multi-page PDF;
+- Based on pdfjs-dist to render multi-page PDF on-demand with lazy loading.
+
+## Using Iframe to Display PDF
 
 ```html
 <template>
@@ -44,20 +47,20 @@
 
 </center>
 
-**😊 优点：**
+**Advantages:**
 
-- 使用简单
-- 功能丰富
+- Simple to use
+- Rich in features
 
-**😢 缺点**
+**Disadvantages:**
 
-- 基于浏览器原生能力渲染，样式等不可控。
+- Based on the browser's native ability to render, the style and other aspects are not controllable.
 
-## 使用 pdfjs-dist
+## Using Pdfjs-dist
 
-### 1. 暴力渲染
+### 1. Brute Force Rendering
 
-直接加载和渲染全部 pdf 页面
+Directly load and render all PDF pages
 
 ```html
 <template>
@@ -163,21 +166,21 @@
 
 </center>
 
-**😊 优点**
+**Advantages:**
 
-- 渲染纯粹的 pdf 页面，无其他附带功能。
-- 使用简单，自主可控。
+- Renders pure PDF pages without additional features.
+- Simple to use and fully controllable.
 
-**😢 缺点**
+**Disadvantages:**
 
-- pdf 文件过大时，渲染性能不佳。
+- Poor rendering performance when the PDF file is too large.
 
-**🎉 适用于**
-适用于展示 10 页以下的小型 pdf 文档，使用简单，同时不用考虑太多性能优化的问题。
+**Applicable to:**
+Suitable for displaying small PDF documents with less than 10 pages. It's simple to use and does not require considering too many performance optimization issues.
 
-### 2. 懒加载渲染
+### 2. Lazy Loading Rendering
 
-基于 pdfjs-dist 按需懒加载渲染多页 pdf
+Based on pdfjs-dist, render multi-page PDF with on-demand lazy loading
 
 ```html
 <template>
@@ -341,46 +344,52 @@
 
 </center>
 
-**😊 优点**
+**Advantages:**
 
-- 渲染纯粹的 pdf 页面，无其他附带功能。
-- 使用略复杂，自主可控。
-- 懒加载渲染，渲染性能更好，使用体验更佳。
+- Renders pure PDF pages without additional features.
+- Slightly more complex to use, but fully controllable.
+- Lazy loading rendering, better rendering performance, and improved user experience.
 
-**🎉 适用于**
+**Applicable to:**
 
-- 可用于展示比较大的 pdf 文件，理论来说，几十到上百兆都不在话下。
-- 希望自定义一些简单功能。
+- Suitable for displaying larger PDF files, theoretically, tens to hundreds of megabytes are not a problem.
+- For those who wish to customize some simple features.
 
-### 3. 性能比较
+## Postscript
 
-懒加载 pdf 页面后，性能得到大幅优化。
+There are many more features related to PDF. This article only lists some commonly used methods. If I have time in the future, I will unlock more related tutorials.
 
-测试文档：112 页，开发环境测试，本地一次性加载文件，不考虑各类其他性能优化手段。
+### 3. Performance Comparison
 
-- 无懒加载
+After implementing lazy loading of PDF pages, the performance has been greatly improved.
+
+Test Document: 112 pages, tested in the development environment, the file is loaded all at once locally, without considering other performance optimization methods.
+
+- Without Lazy Loading
 
 ![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/934207754a2f4eceb20b24e852188322~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=331&h=141&s=6936&e=png&b=fffdfd)
 
-- 懒加载
+- With Lazy Loading
 
 ![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8dc927fa4281427b8aaf44ef8b618675~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=326&h=150&s=7276&e=png&b=fefdfd)
 
-✨ 以上示例是在一次性请求完全部文件流后进行 pdf 渲染，故性能受 pdf 文件大小影响。在生产环境下，可配合服服务端实现按需请求字节流，按需渲染结合来实现更佳的渲染性能。
+✨ The above examples render the PDF after requesting the entire file stream at once, hence the performance is affected by the size of the PDF file. In a production environment, it is possible to work with the server to request byte streams on demand and combine them with on-demand rendering to achieve better rendering performance.
 
-## 写在后面
+## Related Blogs
 
-pdf 相关特性还有很多，这里仅列出常用的一些使用方法，以后有时间的话会解锁更多相关教程。
+[How to Use Pdfjs to Display PDF in Vue3](https://juejin.cn/post/7277475232320536633#heading-18)
 
-## 相关博客
+## References
 
-[vue3 中如何使用 pdfjs 来展示 pdf 文档](https://juejin.cn/post/7277475232320536633#heading-18)
-
-## 参考资料
-
-- [pdf.js 源码](ttps://github.com/mozilla/pdf.js)
-- [pdf.js 官方文档](https://mozilla.github.io/pdf.js/)
+- [Pdf.js Source Code](https://github.com/mozilla/pdf.js)
+- [Pdf.js Official Documentation](https://mozilla.github.io/pdf.js/)
 
 ## License
 
-该项目采用 MIT 许可协议。
+This project is licensed under the MIT License.
+
+---
+
+## Disclaimer
+
+This document has been assisted by AIGC in translation; please refer to the source code for specific details and accuracy.
