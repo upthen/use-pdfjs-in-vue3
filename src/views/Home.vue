@@ -11,7 +11,7 @@ import PdfBook from "@/assets/JavaScript.pdf";
 
 <style lang="scss" scoped>
 .home-container {
-  width: calc(100vh - 80px);
-  height: 100%;
+  width: 100%;
+  height: calc(100vh - 80px);
 }
 </style>

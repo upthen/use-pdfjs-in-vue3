@@ -47,11 +47,12 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watchEffect, markRaw } from "vue";
+// import { onMounted, ref, watchEffect, markRaw } from "vue";
 import UsePdf from "./views/UsePdf.vue";
 import NotFound from "./views/NotFound.vue";
 import Home from "./views/Home.vue";
 import UsePdfOnDemand from "./views/UsePdfOnDemand.vue";
+import DisableAutoFetchPdf from "./views/DisableAutoFetchPdf.vue";
 
 const routes = [
   { path: "/", name: "使用iframe加载pdf", component: markRaw(Home) },
@@ -61,10 +62,15 @@ const routes = [
     name: "按需渲染pdf",
     component: markRaw(UsePdfOnDemand),
   },
+  {
+    path: "/DisableAutoFetchPdf",
+    name: "分片加载 + 按需渲染pdf",
+    component: markRaw(DisableAutoFetchPdf),
+  },
   { path: "/notFound", component: markRaw(NotFound) },
 ];
 
-const currentPath = ref("/usePdf");
+const currentPath = ref("/");
 const currentComponent = ref(NotFound);
 
 const getComponentByPath = (path: string) => {
