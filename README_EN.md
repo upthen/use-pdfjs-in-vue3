@@ -1,6 +1,3 @@
-Here is the English translation of the provided document:
-
-````markdown
 <center>
 
 # 🎉 How to Use Pdfjs-dist in Vue3
@@ -40,13 +37,14 @@ This tutorial demonstrates how to use pdfjs-dist to display PDF files in Vue3, p
   }
 </style>
 ```
-````
+
 
 <center>
 
 <img src="./use-iframe-render-pdf.gif" alt="use-iframe-render-pdf" />
 
 </center>
+
 
 **😊 Pros:**
 
