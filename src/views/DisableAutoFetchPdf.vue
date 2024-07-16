@@ -127,6 +127,7 @@ onMounted(async () => {
     // 以下2个配置需要显式配置为true
     disableAutoFetch: true,
     disableStream: true,
+    rangeChunkSize: 1024,
   });
   if (await initPdfLoader(loadingTask)) {
     renderPage(1);

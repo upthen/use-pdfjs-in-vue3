@@ -70,7 +70,7 @@ const routes = [
   { path: "/notFound", component: markRaw(NotFound) },
 ];
 
-const currentPath = ref("/");
+const currentPath = ref("/DisableAutoFetchPdf");
 const currentComponent = ref(NotFound);
 
 const getComponentByPath = (path: string) => {

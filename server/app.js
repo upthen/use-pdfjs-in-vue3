@@ -60,7 +60,7 @@ app.get("/getPdf", (req, res) => {
     res.writeHead(200, {
       "Content-Length": fileSize,
       "Accept-Ranges": "bytes",
-      "Content-Type": "application/octet-stream",
+      "Content-Type": "application/pdf",
     });
 
     const fileStream = fs.createReadStream(filePath);

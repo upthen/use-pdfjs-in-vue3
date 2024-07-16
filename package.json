@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
-    "server": "nodemon ./server/app.js"
+    "serve": "nodemon ./server/app.js"
   },
   "dependencies": {
     "@upthen/prettier-config": "^1.0.0",
