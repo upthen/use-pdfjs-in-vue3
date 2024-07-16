@@ -175,7 +175,7 @@
 **🎉 适用于**
 适用于展示 10 页以下的小型 pdf 文档，使用简单，同时不用考虑太多性能优化的问题。
 
-### 2. <p id="ondemand">懒加载渲染</p>
+### 2.<p id="ondemand">懒加载渲染</p>
 
 基于 pdfjs-dist 按需懒加载渲染多页 pdf
 
@@ -537,6 +537,9 @@ onMounted(async () => {
 
 感兴趣的同学,可以一起看一下这块的源码实现,这个 api 实现比较长，可先大致阅读一下，再重点分析我们关注的内容。
 
+<details markdown="1">
+  <summary>点击展开/折叠代码</summary>
+  
 ```ts
 // build/pdf.js
 function getDocument(src) {
@@ -570,15 +573,16 @@ function getDocument(src) {
     }
 
     source = src;
-  }
 
-  var params = Object.create(null);
-  var rangeTransport = null,
-    worker = null;
+}
 
-  // 一个for循环设置一些参数
-  for (var key in source) {
-    var value = source[key];
+var params = Object.create(null);
+var rangeTransport = null,
+worker = null;
+
+// 一个 for 循环设置一些参数
+for (var key in source) {
+var value = source[key];
 
     switch (key) {
       case "url":
@@ -637,73 +641,74 @@ function getDocument(src) {
     }
 
     params[key] = value;
-  }
 
-  // 可以看到这里有超多自定义参数，理论上都是可以通过 getDocument api 传参实现的
-  params.rangeChunkSize = params.rangeChunkSize || DEFAULT_RANGE_CHUNK_SIZE;
-  params.CMapReaderFactory =
-    params.CMapReaderFactory || DefaultCMapReaderFactory;
-  params.ignoreErrors = params.stopAtErrors !== true;
-  params.fontExtraProperties = params.fontExtraProperties === true;
-  params.pdfBug = params.pdfBug === true;
-  params.enableXfa = params.enableXfa === true;
+}
 
-  if (
-    typeof params.docBaseUrl !== "string" ||
-    (0, _display_utils.isDataScheme)(params.docBaseUrl)
-  ) {
-    params.docBaseUrl = null;
-  }
+// 可以看到这里有超多自定义参数，理论上都是可以通过 getDocument api 传参实现的
+params.rangeChunkSize = params.rangeChunkSize || DEFAULT_RANGE_CHUNK_SIZE;
+params.CMapReaderFactory =
+params.CMapReaderFactory || DefaultCMapReaderFactory;
+params.ignoreErrors = params.stopAtErrors !== true;
+params.fontExtraProperties = params.fontExtraProperties === true;
+params.pdfBug = params.pdfBug === true;
+params.enableXfa = params.enableXfa === true;
 
-  if (!Number.isInteger(params.maxImageSize)) {
-    params.maxImageSize = -1;
-  }
+if (
+typeof params.docBaseUrl !== "string" ||
+(0, \_display_utils.isDataScheme)(params.docBaseUrl)
+) {
+params.docBaseUrl = null;
+}
 
-  if (typeof params.isEvalSupported !== "boolean") {
-    params.isEvalSupported = true;
-  }
+if (!Number.isInteger(params.maxImageSize)) {
+params.maxImageSize = -1;
+}
 
-  if (typeof params.disableFontFace !== "boolean") {
-    params.disableFontFace =
-      _api_compatibility.apiCompatibilityParams.disableFontFace || false;
-  }
+if (typeof params.isEvalSupported !== "boolean") {
+params.isEvalSupported = true;
+}
 
-  if (typeof params.ownerDocument === "undefined") {
-    params.ownerDocument = globalThis.document;
-  }
+if (typeof params.disableFontFace !== "boolean") {
+params.disableFontFace =
+\_api_compatibility.apiCompatibilityParams.disableFontFace || false;
+}
 
-  if (typeof params.disableRange !== "boolean") {
-    params.disableRange = false;
-  }
+if (typeof params.ownerDocument === "undefined") {
+params.ownerDocument = globalThis.document;
+}
 
-  // 禁止流式加载
-  if (typeof params.disableStream !== "boolean") {
-    params.disableStream = false;
-  }
-  // 禁止自动加载
-  if (typeof params.disableAutoFetch !== "boolean") {
-    params.disableAutoFetch = false;
-  }
+if (typeof params.disableRange !== "boolean") {
+params.disableRange = false;
+}
 
-  (0, _util.setVerbosityLevel)(params.verbosity);
+// 禁止流式加载
+if (typeof params.disableStream !== "boolean") {
+params.disableStream = false;
+}
+// 禁止自动加载
+if (typeof params.disableAutoFetch !== "boolean") {
+params.disableAutoFetch = false;
+}
 
-  if (!worker) {
-    var workerParams = {
-      verbosity: params.verbosity,
-      port: _worker_options.GlobalWorkerOptions.workerPort,
-    };
-    worker = workerParams.port
-      ? PDFWorker.fromPort(workerParams)
-      : new PDFWorker(workerParams);
-    task._worker = worker;
-  }
+(0, \_util.setVerbosityLevel)(params.verbosity);
 
-  var docId = task.docId;
-  worker.promise
-    .then(function () {
-      if (task.destroyed) {
-        throw new Error("Loading aborted");
-      }
+if (!worker) {
+var workerParams = {
+verbosity: params.verbosity,
+port: \_worker_options.GlobalWorkerOptions.workerPort,
+};
+worker = workerParams.port
+? PDFWorker.fromPort(workerParams)
+: new PDFWorker(workerParams);
+task.\_worker = worker;
+}
+
+var docId = task.docId;
+worker.promise
+.then(function () {
+if (task.destroyed) {
+throw new Error("Loading aborted");
+}
 
       var workerIdPromise = _fetchDocument(
         worker,
@@ -771,9 +776,13 @@ function getDocument(src) {
       );
     })
     ["catch"](task._capability.reject);
-  return task;
+
+return task;
 }
+
 ```
+
+</details>
 
 根据以上源码,很容易可以得到我们的解决方案了。以上，分片加载 pdf 的方案就完成了。
 
@@ -825,3 +834,4 @@ pdf 相关特性还有很多，这里仅列出常用的一些使用方法，以�
 ## License
 
 该项目采用 MIT 许可协议。
+```
